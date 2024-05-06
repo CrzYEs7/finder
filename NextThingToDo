@@ -1,0 +1,9 @@
+Add option to remove current tags from a part; -- done -- can be improved.
+
+Add a library to manage the adition of tags that contains pronoms, connetors...
+    as those are not pertinent for the searchs.
+
+support for phrases in the search box????? (currently the words must be separated by ",")
+    (maybe, split() the sentense in words and strip())
+
+Edit parts, change name, detect duplicated name.

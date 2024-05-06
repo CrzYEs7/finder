@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    finder
+{% endblock %}
+
+{% block main %}
+    <div align="center">
+        <form action="/" method="post">
+            <div class="input-group mb-3 flex-nowrap">
+                <span class="input-group-text">Part:</span>
+                <input class="form-control" autofocus id="search" name="search" type="text" required>
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+    {% if parts %}
+        <div class="table-responsive text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col-sm"></th>
+                        <th scope="col-sm">Reference</th>
+                        <th scope="col-sm">Name</th>
+                        <th scope="col-sm">Manufacturer</th>
+                        <th scope="col-sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for part in parts %}
+                        <tr>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm" onclick="copy_reference('{{ part.reference }}')" name="reference">Copy</button>
+                            </td>
+                            <td>
+                                {{ part.reference }}
+                                <input type="hidden" value="{{ part.reference }}" name="favorite_reference" id="favorite_reference">
+                                <!-- favorite icon -->
+                                {% if part.favorited %}
+                                    <svg name="{{ part.reference }}" type="submit" id="favoriteBtn" onclick="favorite('{{part.reference}}')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.18.18 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.18.18 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.18.18 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.18.18 0 0 1-.134-.098z" />
+                                    </svg>
+                                {% else %}
+                                    <svg name="{{ part.reference }}" type="submit" id="favoriteBtn" onclick="favorite('{{part.reference}}')" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.18.18 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.18.18 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.18.18 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.18.18 0 0 1-.134-.098z" />
+                                    </svg>
+                                {% endif %}
+                            </td>
+
+                            <td>{{ part.name }}</td>
+                            <td>{{ part.manufacturer_name }}</td>
+
+                            <td>
+                                <form action="/update">
+                                    <button class="btn btn-primary btn-sm" type="submit" value="{{ part.reference }}" id="reference" name="reference">+</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <span>Looking for a part reference?</span>
+    {% endif %}
+{% endblock %}

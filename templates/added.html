@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Added
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Reference</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">Car Brand</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ reference }}</td>
+                <td>{{ part_manufacturer }}</td>
+                <td>{{ car_brand }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

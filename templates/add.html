@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add
+{% endblock %}
+
+{% block main %}
+    <form action="/add" method="post">
+        <div class="mb-3">
+            <input autocomplete="on" autofocus class="form-control mx-auto w-auto mb-3" id="name" name="name" placeholder="Name" type="text">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto mb-3" id="reference" name="reference" type="text" placeholder="Reference">
+            <input autocomplete="on" autofocus class="form-control mx-auto w-auto mb-3" id="car_brand" name="car_brand" placeholder="Car Brand" type="text">
+            <input autocomplete="on" autofocus class="form-control mx-auto w-auto mb-3" id="part_manufacturer" name="part_manufacturer" placeholder="Part Manufacturer" type="text">
+            <input autocomplete="on" autofocus class="form-control mx-auto w-auto mb-3" id="tags" name="tags" placeholder="Tag1, tag2, ..." type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Updated
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2">Reference</th>
+                <td>{{ reference }}</td>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <th colspan="3">New Tags</th>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="table">
+        <tr>
+            {% for tag in tags_list %}
+                <td scope="col">{{ tag }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}
