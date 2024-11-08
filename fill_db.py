@@ -1,7 +1,5 @@
 from cs50 import SQL
 
-db = SQL("sqlite:///parts.db")
-
 def fake_fill_db(t_db, n):
     for fake_part in range(n):
         try:

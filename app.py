@@ -1,4 +1,3 @@
-import os
 import ast
 import re
 
@@ -22,7 +21,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///parts.db")
+db = SQL("sqlite:///database.db")
 
 # flags to avoid two big updates at the same time -- Prototype --
 db_system_state = SQL("sqlite:///state.db")
@@ -36,6 +35,25 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+@app.route("/result", methods=["GET", "POST"])
+@login_required
+def result():
+    user = session["user_id"]
+    try:
+        input_search = request.args.get("search")
+        print(input_search)
+        input_list = re.split(",| ", input_search)
+        
+        for input in input_list:
+            if input == " " or input == "":
+                input_list.remove(input)
+
+        parts_info = search_car_parts(input_list, user, "database.db")
+
+        return render_template("result.html", parts=parts_info, favorites=favorites())
+
+    except Exception as e:
+        return render_template("result.html")
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
@@ -44,21 +62,9 @@ def index():
     user = session["user_id"]
 
     """Show most viewed parts"""
-    if request.method == "POST":
-        try:
-            input_search = request.form.get("search")
-            input_list = re.split(",| ", input_search)
-
-            parts_info = search_car_parts(input_list, user)
-
-            return render_template("index.html", parts=parts_info, favorites=favorites)
-
-        except Exception as e:
-            print(f"Error: {str(e)}")
-            return apology("Sorry, nothing found.")
-
-    else:
-        return render_template("index.html")
+    # if request.method == "GET":
+    
+    return render_template("index.html")
 
 
 @app.route("/favorites", methods=["GET", "POST"])

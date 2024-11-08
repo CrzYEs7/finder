@@ -3,7 +3,7 @@ function favorite(reference) {
     fetch('/favorite?reference=' + reference)
         .then(resp => resp.json()) // get response from server (app.py favorite)
         .then(data => {
-            const favoriteBtn = document.querySelector("[name=" + reference + "]")
+            const favoriteBtn = document.getElementById(reference)
             const current_item_row = document.getElementById(reference)
             const current_path = window.location.pathname
 
