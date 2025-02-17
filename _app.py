@@ -61,10 +61,15 @@ def index():
     # logged user id
     user = session["user_id"]
 
-    """Show most viewed parts"""
+    """Show most viewed or favorites parts"""
     # if request.method == "GET":
+
+    # favorites
+    favorites = db.execute("""SELECT car_parts.name, car_parts.reference
+                            FROM car_parts WHERE car_parts.id IN
+                            (SELECT part_id FROM favorites_by_users WHERE user_id = ?)""", user)
     
-    return render_template("index.html")
+    return render_template("index.html", parts=favorites)
 
 
 @app.route("/favorites", methods=["GET", "POST"])
@@ -196,27 +201,27 @@ def add():
         return render_template("added.html", name=name, reference=reference, car_brand=car_brand_name, part_manufacturer=part_manufacturer_name)
 
     else:
-        """Get the current state for the big_update"""
-        big_update_state = db_system_state.execute("SELECT state FROM system WHERE name = (?)", "big_update")[0]["state"]
-        print(big_update_state)
+        # """Get the current state for the big_update"""
+        # big_update_state = db_system_state.execute("SELECT state FROM system WHERE name = (?)", "big_update")[0]["state"]
+        # print(big_update_state)
 
-        if big_update_state == "chill":
-            flash('Updating database. You can reload the page and keep navigating.')
-            db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "updating", "big_update")
+        # if big_update_state == "chill":
+        #     flash('Updating database. You can reload the page and keep navigating.')
+        #     db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "updating", "big_update")
 
-            """Get data from excel file"""
-            data = excel_reader.get_parts_data('referencias.xlsx')
+        #     """Get data from excel file"""
+        #     data = excel_reader.get_parts_data('referencias.xlsx')
 
-            """insert the data on the database"""
-            if data:
-                fill_response = fill_db(db, data)
-                print(fill_response)
-                db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "chill", "big_update")
-            else:
-                print("No data file found")
-                db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "chill", "big_update")
-        else:
-            print("Update in course")
+        #     """insert the data on the database"""
+        #     if data:
+        #         fill_response = fill_db(db, data)
+        #         print(fill_response)
+        #         db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "chill", "big_update")
+        #     else:
+        #         print("No data file found")
+        #         db_system_state.execute("UPDATE system SET state = (?) WHERE name = (?)", "chill", "big_update")
+        # else:
+        #     print("Update in course")
 
         # Get input from user for new car part
         return render_template("add.html")

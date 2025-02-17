@@ -45,7 +45,7 @@ def search_car_parts(user_inputs, user_id, db_file):
         conditions[field] = " OR ".join(
             [condition_template.format(field) for input in user_inputs])
 
-    print("conditions: ", conditions)
+    # print("conditions: ", conditions)
 
     base_query = base_query.format(
         conditions[fields[0]], conditions[fields[1]],
@@ -58,7 +58,7 @@ def search_car_parts(user_inputs, user_id, db_file):
 
     # query input
     query_content_to_search = user_inputs * 4
-    print("query_content_to_search: ", query_content_to_search)
+    # print("query_content_to_search: ", query_content_to_search)
 
     # query
     res = cursor.execute(base_query, query_content_to_search + [user_id])
@@ -66,7 +66,7 @@ def search_car_parts(user_inputs, user_id, db_file):
 
     conn.close()
 
-    print(base_query)
-    print(result)
+    # print(base_query)
+    # print(result)
 
     return result

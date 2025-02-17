@@ -5,13 +5,16 @@ const result = document.getElementById("result")
 
 input_field.addEventListener("input", submit_form);
 function submit_form() {
+    if (input_field.value.length < 3) {
+        return
+    }
     fetch("/result?search=" + input_field.value) 
     .then(response => {
         return response.text()
     })
     .then(html => {
         result.innerHTML = html
-    })
+    }) 
 }
 
 form.onsubmit = function(event){

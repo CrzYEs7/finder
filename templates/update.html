@@ -8,9 +8,9 @@
     <div align="center">
         <form action="/update" method="GET">
             <div class="input-group mb-3 flex-nowrap">
-                <span class="input-group-text">Part:</span>
-                <input class="form-control" autofocus id="reference" name="reference" type="text" required placeholder="Reference">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <span class="input-group-text">Peça:</span>
+                <input class="form-control" autofocus id="reference" name="reference" type="text" required placeholder="Referencia">
+                <button class="btn btn-primary" type="submit">Procurar</button>
             </div>
         </form>
     </div>
@@ -18,8 +18,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Reference</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Nome</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,10 +33,10 @@
         <div align="center">
             <form action="/update" method="POST">
                 <div class="input-group mb-3 flex-nowrap">
-                    <span class="input-group-text">New Tags:</span>
+                    <span class="input-group-text">Novas Tags:</span>
                     <input class="form-control" autofocus id="tags" name="tags" type="text" placeholder="Tag1, tag2, ...">
                     <input hidden id="part_info" name="part_info" value="{{ part_info }}">
-                    <button class="btn btn-primary" type="submit">Add</button>
+                    <button class="btn btn-primary" type="submit">Adicionar</button>
                 </div>
             </form>
         </div>
@@ -63,7 +63,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="col-md-16 fw-bold" scope="col">Current Tags</th>
+                            <th class="col-md-16 fw-bold" scope="col">Tags atuais</th>
                         </tr>
                     </thead>
                 </table>
