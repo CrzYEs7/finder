@@ -152,6 +152,8 @@ def add():
         input_tags = request.form.get("tags")
 
         # transform into a python list
+        if not input_tags:
+            input_tags = "sem tags"
         tags_list = input_tags.split(",")
         tags_list = [tag.strip() for tag in tags_list]
 
