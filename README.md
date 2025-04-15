@@ -10,7 +10,7 @@ To improve our **time efficiency** he created an **Excel file containing a list 
 So I had the idea for my final project of the **CS50** course to create an internal website for this purpose.
 
 ***
-**This projects consists primarily of a web page, server(*Flask*) and database**
+**This projects consists primarily of a web page using (*Flask*) framework.**
 **(*SQlite*) that stores some information about car parts.**
 ***
 
@@ -30,7 +30,7 @@ So I had the idea for my final project of the **CS50** course to create an inter
   - **Light/Dark**: Switch between light or dark mode.
 
 ### Major choices:
-+   **Server** : **Flask**.
++   **Web framework** : **Flask**.
     I already have some familiarity because of **CS50's** problem sets. And it's simple.
     (still a prototype)
 
@@ -44,7 +44,7 @@ So I had the idea for my final project of the **CS50** course to create an inter
 ### **Files**
 
 ### **app.py**
-This file is the **Flask** server application responsible for the server side logic so<br>
+This file is the **Flask** application responsible for the server side logic so<br>
 **verything that is server sided happens here.**<br>
 
 
