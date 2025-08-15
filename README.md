@@ -32,7 +32,6 @@ So I had the idea for my final project of the **CS50** course to create an inter
 ### Major choices:
 +   **Web framework** : **Flask**.
     I already have some familiarity because of **CS50's** problem sets. And it's simple.
-    (still a prototype)
 
 +   **Database** : **Sqlite**.
     Simple, fast, light. More than enough for what i need.
@@ -44,7 +43,7 @@ So I had the idea for my final project of the **CS50** course to create an inter
 ### **Files**
 
 ### **app.py**
-This file is the **Flask** application responsible for the server side logic so<br>
+This file is the **Flask** application responsible for the backend logic so<br>
 **verything that is server sided happens here.**<br>
 
 
